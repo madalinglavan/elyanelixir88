@@ -19,9 +19,9 @@ const header = document.querySelector("header");
 
 const burger = document.querySelector(".burger");
 
-const navLinks = document.querySelector(".nav-links");
-
-const navigationLinks = document.querySelectorAll(".nav-links a");
+const navigationLinks = document.querySelectorAll(
+    ".nav-links a, .mobile-menu a"
+);
 
 
 
@@ -43,45 +43,61 @@ window.addEventListener("load", () => {
 
 
 
-/*==================================================
 
-    HEADER SCROLL
+function handleScroll() {
 
-==================================================*/
+    const scrollY = window.scrollY;
 
-window.addEventListener("scroll", () => {
+    /* HEADER */
 
-    if (window.scrollY > 60) {
+    if (scrollY > 60) {
 
         header.classList.add("active");
 
-    }
-
-    else {
+    } else {
 
         header.classList.remove("active");
 
     }
 
-});
+    /* ACTIVE MENU */
 
+    let current = "";
 
+    sections.forEach(section => {
 
-/*==================================================
+        const sectionTop = section.offsetTop - 150;
 
-    BURGER MENU
+        if (scrollY >= sectionTop) {
 
-==================================================*/
+            current = section.id;
 
-burger.addEventListener("click", () => {
+        }
 
-    burger.classList.toggle("active");
+    });
 
-    navLinks.classList.toggle("active");
+    navigationLinks.forEach(link => {
 
-    document.body.classList.toggle("menu-open");
+        link.classList.remove("current");
 
-});
+        if (link.getAttribute("href") === "#" + current) {
+
+            link.classList.add("current");
+
+        }
+
+    });
+
+    /* BACK TO TOP */
+
+    if (backToTop) {
+
+        backToTop.classList.toggle("active", scrollY > 500);
+
+    }
+
+}
+window.addEventListener("scroll", handleScroll);
 
 
 
@@ -145,45 +161,6 @@ navigationLinks.forEach(link => {
 
 
 
-/*==================================================
-
-    ACTIVE MENU
-
-==================================================*/
-
-const sections = document.querySelectorAll("section");
-
-window.addEventListener("scroll", () => {
-
-    let current = "";
-
-    sections.forEach(section => {
-
-        const sectionTop = section.offsetTop - 150;
-
-        const sectionHeight = section.clientHeight;
-
-        if (pageYOffset >= sectionTop) {
-
-            current = section.getAttribute("id");
-
-        }
-
-    });
-
-    navigationLinks.forEach(link => {
-
-        link.classList.remove("current");
-
-        if (link.getAttribute("href") === "#" + current) {
-
-            link.classList.add("current");
-
-        }
-
-    });
-
-});
 
 
 
@@ -359,25 +336,6 @@ if (slides.length > 0) {
 
 }
 
-
-
-/*==================================================
-
-    HERO PARALLAX
-
-==================================================*/
-
-const hero = document.querySelector(".hero");
-
-window.addEventListener("scroll", () => {
-
-    if (!hero) return;
-
-    let offset = window.pageYOffset;
-
-    hero.style.backgroundPositionY = offset * 0.4 + "px";
-
-});
 
 
 
@@ -597,31 +555,6 @@ console.log(
 
 
 
-/*==================================================
-
-    END PART 2
-
-==================================================*/
-
-/*==================================================
-
-BURGER MENU
-
-==================================================*/
-
-if (burger) {
-
-    burger.addEventListener("click", () => {
-
-        burger.classList.toggle("active");
-
-        navLinks.classList.toggle("active");
-
-        document.body.classList.toggle("menu-open");
-
-    });
-
-}
 
 navigationLinks.forEach(link=>{
 
@@ -669,17 +602,16 @@ FULLSCREEN MENU
 
 const mobileMenu=document.querySelector(".mobile-menu");
 
-if(burger){
+if (burger) {
 
-burger.addEventListener("click",()=>{
+    burger.addEventListener("click", () => {
 
-burger.classList.toggle("active");
+        burger.classList.toggle("active");
+        mobileMenu.classList.toggle("active");
+        overlay.classList.toggle("active");
+        document.body.classList.toggle("menu-open");
 
-mobileMenu.classList.toggle("active");
-
-document.body.classList.toggle("menu-open");
-
-});
+    });
 
 }
 
