@@ -666,6 +666,7 @@ display:none;
     overflow:hidden;
 
     padding:140px 0 80px;
+    color: #ffc710;
 
 }
 
@@ -1004,5 +1005,59 @@ header{
     font-size:14px;
 
 }
+
+}
+
+
+
+.hero-slider{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+}
+
+.slide{
+
+    position:absolute;
+
+    inset:0;
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+
+    opacity:0;
+
+    transition:opacity 1.2s ease;
+
+}
+
+.slide.active{
+
+    opacity:1;
+
+}
+
+.slide:nth-child(1){
+
+    background-image:url("images/hero1.png");
+
+}
+
+.slide:nth-child(2){
+
+    background-image:url("images/hero2.png");
+
+}
+
+.slide:nth-child(3){
+
+    background-image:url("images/hero3.png");
 
 }
