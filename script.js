@@ -332,7 +332,7 @@ function nextSlide() {
 
 if (slides.length > 0) {
 
-    setInterval(nextSlide, 6000);
+    setInterval(nextSlide, 10000);
 
 }
 
