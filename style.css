@@ -1659,3 +1659,93 @@ linear-gradient(
         transparent 45%);
     pointer-events:none;
 }
+
+#pedichiura{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+
+        linear-gradient(
+
+        180deg,
+
+        #ffffff 0%,
+
+        #faf8f3 100%
+
+    );
+
+}
+
+#pedichiura::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(
+
+        circle at top left,
+
+        rgba(212,175,55,.05),
+
+        transparent 35%
+
+        ),
+
+        radial-gradient(
+
+        circle at bottom right,
+
+        rgba(11,84,60,.05),
+
+        transparent 45%
+
+        );
+
+    pointer-events:none;
+
+}
+
+.pedicure-highlights{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:25px;
+
+margin:70px 0;
+
+}
+
+#pedichiura .service-category{
+
+background:
+
+rgba(11,84,60,.9);
+
+}
+
+#pedichiura .service-image img{
+
+height:340px;
+
+object-fit:cover;
+
+}
+
+#pedichiura .service-card:hover{
+
+transform:
+
+translateY(-10px);
+
+}
