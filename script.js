@@ -5,7 +5,8 @@
 
 ==================================================*/
 
-
+const pageTransition =
+    document.querySelector(".page-transition");
 
 /*==================================================
 
@@ -83,6 +84,7 @@ navigationLinks.forEach(link => {
     link.addEventListener("click", function (e) {
 
         const target = this.getAttribute("href");
+        console.log(target);
 
         if (target.startsWith("#")) {
 
@@ -94,16 +96,42 @@ navigationLinks.forEach(link => {
             document.body.classList.remove("menu-open");
             overlay.classList.remove("active");
 
-            const section = document.querySelector(target);
+           const section = document.querySelector(target);
 
-            if (section) {
+console.log("target =", target);
+console.log(section);
 
-                window.scrollTo({
+if(section){
 
-                    top: section.offsetTop - 80,
-                    behavior: "smooth"
+    console.log(section.id);
 
-                });
+if (section) {
+
+    const y =
+        section.getBoundingClientRect().top +
+        window.scrollY -
+        80;
+
+    pageTransition.classList.add("active");
+
+setTimeout(()=>{
+
+    window.scrollTo({
+        top:y,
+        behavior:"auto"
+    });
+
+},220);
+
+setTimeout(()=>{
+
+    pageTransition.classList.remove("active");
+
+},820);
+
+}
+
+
 
             }
 
@@ -533,3 +561,4 @@ document.querySelectorAll(".mobile-dropdown-btn").forEach(button => {
     });
 
 });
+
