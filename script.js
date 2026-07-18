@@ -562,3 +562,34 @@ document.querySelectorAll(".mobile-dropdown-btn").forEach(button => {
 
 });
 
+
+
+/*==========================================
+DESKTOP DROPDOWN DELAY
+==========================================*/
+
+document.querySelectorAll(".dropdown").forEach(dropdown => {
+
+    let timeout;
+
+    dropdown.addEventListener("mouseenter", () => {
+
+        clearTimeout(timeout);
+
+        dropdown.classList.add("active");
+
+    });
+
+    dropdown.addEventListener("mouseleave", () => {
+
+        timeout = setTimeout(() => {
+
+            dropdown.classList.remove("active");
+
+        }, 300); // timpul în ms
+
+    });
+
+});
+
+

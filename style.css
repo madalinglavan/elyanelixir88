@@ -2435,7 +2435,8 @@ font-family:var(--heading);
     transition:.35s;
 
 }
-.dropdown:hover .dropdown-menu{
+.dropdown:hover .dropdown-menu,
+.dropdown.active .dropdown-menu{
 
     opacity:1;
     visibility:visible;
@@ -2587,7 +2588,7 @@ font-family:var(--heading);
 
     display:flex;
     flex-direction:column;
-
+    
     transition:max-height .4s ease;
 
 }
@@ -2741,3 +2742,4 @@ APPLE PAGE TRANSITION
     }
 
 }
+
