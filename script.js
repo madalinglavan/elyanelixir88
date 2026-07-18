@@ -511,3 +511,25 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 reveals.forEach(el => observer.observe(el));
+
+
+
+document.querySelectorAll(".mobile-dropdown-btn").forEach(button => {
+
+    button.addEventListener("click", function(){
+
+        const current = this.parentElement;
+
+        document.querySelectorAll(".mobile-dropdown").forEach(item => {
+
+            if(item !== current){
+                item.classList.remove("active");
+            }
+
+        });
+
+        current.classList.toggle("active");
+
+    });
+
+});
