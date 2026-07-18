@@ -12,19 +12,13 @@
     SELECTORS
 
 ==================================================*/
-
 const loader = document.getElementById("loader");
-
 const header = document.querySelector("header");
-
 const burger = document.querySelector(".burger");
-
-const navigationLinks = document.querySelectorAll(
-    ".nav-links a, .mobile-menu a"
-);
-
-
-
+const mobileMenu = document.querySelector(".mobile-menu");
+const overlay = document.querySelector(".mobile-overlay");
+const navigationLinks = document.querySelectorAll(".nav-links a, .mobile-menu a");
+const sections = document.querySelectorAll("section");
 /*==================================================
 
     WINDOW LOAD
@@ -48,19 +42,11 @@ function handleScroll() {
 
     const scrollY = window.scrollY;
 
-    /* HEADER */
-
     if (scrollY > 60) {
-
         header.classList.add("active");
-
     } else {
-
         header.classList.remove("active");
-
     }
-
-    /* ACTIVE MENU */
 
     let current = "";
 
@@ -69,9 +55,7 @@ function handleScroll() {
         const sectionTop = section.offsetTop - 150;
 
         if (scrollY >= sectionTop) {
-
             current = section.id;
-
         }
 
     });
@@ -81,53 +65,18 @@ function handleScroll() {
         link.classList.remove("current");
 
         if (link.getAttribute("href") === "#" + current) {
-
             link.classList.add("current");
-
         }
 
     });
 
-    /* BACK TO TOP */
-
     if (backToTop) {
-
         backToTop.classList.toggle("active", scrollY > 500);
-
     }
 
 }
 window.addEventListener("scroll", handleScroll);
 
-
-
-/*==================================================
-
-    CLOSE MENU AFTER CLICK
-
-==================================================*/
-
-navigationLinks.forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        burger.classList.remove("active");
-
-        navLinks.classList.remove("active");
-
-        document.body.classList.remove("menu-open");
-
-    });
-
-});
-
-
-
-/*==================================================
-
-    SMOOTH SCROLL
-
-==================================================*/
 
 navigationLinks.forEach(link => {
 
@@ -139,6 +88,12 @@ navigationLinks.forEach(link => {
 
             e.preventDefault();
 
+            burger.classList.remove("active");
+            mobileMenu.classList.remove("active");
+            overlay.classList.remove("active");
+            document.body.classList.remove("menu-open");
+            overlay.classList.remove("active");
+
             const section = document.querySelector(target);
 
             if (section) {
@@ -146,7 +101,6 @@ navigationLinks.forEach(link => {
                 window.scrollTo({
 
                     top: section.offsetTop - 80,
-
                     behavior: "smooth"
 
                 });
@@ -158,6 +112,7 @@ navigationLinks.forEach(link => {
     });
 
 });
+
 
 
 
@@ -194,27 +149,6 @@ if (scrollIndicator) {
 
 
 
-/*==================================================
-
-    ESC KEY CLOSE MENU
-
-==================================================*/
-
-document.addEventListener("keydown", (e) => {
-
-    if (e.key === "Escape") {
-
-        burger.classList.remove("active");
-
-        navLinks.classList.remove("active");
-
-        document.body.classList.remove("menu-open");
-
-    }
-
-});
-
-
 
 /*==================================================
 
@@ -224,7 +158,7 @@ document.addEventListener("keydown", (e) => {
 
 document.addEventListener("click", (e) => {
 
-    const insideMenu = navLinks.contains(e.target);
+    const insideMenu = mobileMenu.contains(e.target);
 
     const insideBurger = burger.contains(e.target);
 
@@ -232,9 +166,11 @@ document.addEventListener("click", (e) => {
 
         burger.classList.remove("active");
 
-        navLinks.classList.remove("active");
+        mobileMenu.classList.remove("active");
 
         document.body.classList.remove("menu-open");
+
+        overlay.classList.remove("active");
 
     }
 
@@ -254,13 +190,16 @@ window.addEventListener("resize", () => {
 
         burger.classList.remove("active");
 
-        navLinks.classList.remove("active");
+        mobileMenu.classList.remove("active");
 
         document.body.classList.remove("menu-open");
+        overlay.classList.remove("active");
 
     }
 
 });
+
+
 
 
 
@@ -339,49 +278,6 @@ if (slides.length > 0) {
 
 
 
-/*==================================================
-
-    REVEAL ANIMATION
-
-==================================================*/
-
-const revealElements = document.querySelectorAll(
-
-    ".section, .section-title, .services-grid, .gallery-grid, .contact-wrapper"
-
-);
-
-const revealObserver = new IntersectionObserver(
-
-    (entries) => {
-
-        entries.forEach((entry) => {
-
-            if (entry.isIntersecting) {
-
-                entry.target.classList.add("show");
-
-            }
-
-        });
-
-    },
-
-    {
-
-        threshold: 0.15
-
-    }
-
-);
-
-revealElements.forEach((element) => {
-
-    revealObserver.observe(element);
-
-});
-
-
 
 /*==================================================
 
@@ -457,19 +353,6 @@ heroButtons.forEach((button) => {
 
 
 
-/*==================================================
-
-    SECTION TITLE ANIMATION
-
-==================================================*/
-
-const titles = document.querySelectorAll(".section-title h2");
-
-titles.forEach((title) => {
-
-    revealObserver.observe(title);
-
-});
 
 
 
@@ -556,37 +439,13 @@ console.log(
 
 
 
-navigationLinks.forEach(link=>{
 
-    link.addEventListener("click",()=>{
-
-        burger.classList.remove("active");
-
-        navLinks.classList.remove("active");
-
-        document.body.classList.remove("menu-open");
-
-    });
-
-});
-
-const overlay=document.querySelector(".mobile-overlay");
-
-if(burger){
-
-    burger.addEventListener("click",()=>{
-
-        overlay.classList.toggle("active");
-
-    });
-
-}
 
 overlay.addEventListener("click",()=>{
 
     burger.classList.remove("active");
 
-    navLinks.classList.remove("active");
+    mobileMenu.classList.remove("active");
 
     overlay.classList.remove("active");
 
@@ -600,7 +459,7 @@ FULLSCREEN MENU
 
 ==================================================*/
 
-const mobileMenu=document.querySelector(".mobile-menu");
+
 
 if (burger) {
 
@@ -610,24 +469,12 @@ if (burger) {
         mobileMenu.classList.toggle("active");
         overlay.classList.toggle("active");
         document.body.classList.toggle("menu-open");
+        console.log("BURGER");
 
     });
 
 }
 
-document.querySelectorAll(".mobile-menu a").forEach(link=>{
-
-link.addEventListener("click",()=>{
-
-burger.classList.remove("active");
-
-mobileMenu.classList.remove("active");
-
-document.body.classList.remove("menu-open");
-
-});
-
-});
 
 document.addEventListener("keydown",(e)=>{
 
@@ -642,3 +489,25 @@ document.body.classList.remove("menu-open");
 }
 
 });
+
+const reveals = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+
+        }
+
+    });
+
+}, {
+    threshold: 0,
+    rootMargin: "0px 0px -100px 0px"
+});
+
+reveals.forEach(el => observer.observe(el));
