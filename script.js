@@ -593,3 +593,47 @@ document.querySelectorAll(".dropdown").forEach(dropdown => {
 });
 
 
+document.querySelectorAll(".service-card").forEach(card=>{
+
+    const durationCards = card.querySelectorAll(".duration-card");
+    const price = card.querySelector(".price-value");
+    const button = card.querySelector(".service-btn");
+
+    durationCards.forEach(option=>{
+
+        option.addEventListener("click",()=>{
+
+            durationCards.forEach(btn=>btn.classList.remove("active"));
+
+            option.classList.add("active");
+
+            const duration = option.dataset.duration;
+            const value = option.dataset.price;
+
+            price.textContent = value + " Lei";
+
+            const service = button.dataset.service;
+
+            const message =
+`Bună ziua! 🌿
+
+Aș dori o programare pentru:
+
+${service}
+
+Durată:
+${duration} minute
+
+Îmi puteți spune când aveți locuri disponibile?
+
+Mulțumesc!`;
+
+            button.href =
+"https://wa.me/40769729403?text=" +
+encodeURIComponent(message);
+
+        });
+
+    });
+
+});

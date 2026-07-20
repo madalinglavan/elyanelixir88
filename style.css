@@ -2743,3 +2743,203 @@ APPLE PAGE TRANSITION
 
 }
 
+
+/*========================
+
+SERVICE OPTIONS
+
+========================*/
+
+.service-options{
+
+    margin-top:20px;
+
+}
+
+.service-options__title{
+
+    font-size:1rem;
+    font-weight:600;
+
+    margin-bottom:16px;
+
+    text-align:center;
+
+    color:var(--green);
+
+}
+
+/*========================
+
+DURATION SELECTOR
+
+========================*/
+
+.duration-selector{
+
+    display:flex;
+
+    gap:12px;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+}
+
+.duration-card{
+
+    position:relative;
+
+    flex:1;
+
+    min-width:110px;
+
+    padding:16px 12px;
+
+    border:1px solid rgba(0,0,0,.08);
+
+    border-radius:16px;
+
+    background:#fff;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:6px;
+
+}
+
+.duration-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 12px 24px rgba(0,0,0,.08);
+
+}
+
+.duration-card.active{
+
+    border-color:var(--green);
+
+    background:#f3faf7;
+
+    box-shadow:0 12px 24px rgba(0,0,0,.10);
+
+}
+
+.duration-time{
+
+    font-size:1.1rem;
+
+    font-weight:700;
+
+}
+
+.duration-name{
+
+    font-size:.85rem;
+
+    opacity:.7;
+
+}
+
+.duration-badge{
+
+    position:absolute;
+
+    top:-10px;
+
+    padding:4px 10px;
+
+    border-radius:20px;
+
+    background:var(--gold);
+
+    color:#fff;
+
+    font-size:.65rem;
+
+    font-weight:700;
+
+}
+
+/*========================
+
+PRICE
+
+========================*/
+
+.service-price{
+
+    margin:24px 0;
+
+    text-align:center;
+
+}
+
+.price-label{
+
+    display:block;
+
+    font-size:.9rem;
+
+    color:#777;
+
+    margin-bottom:6px;
+
+}
+
+.price-value{
+
+    font-size:2rem;
+
+    color:var(--green);
+
+    transition:.25s;
+
+}
+@media (max-width:768px){
+
+    .duration-selector{
+
+        gap:8px;
+
+    }
+
+    .duration-card{
+
+        min-width:92px;
+
+        padding:12px 8px;
+
+    }
+
+    .duration-time{
+
+        font-size:.95rem;
+
+    }
+
+    .duration-name{
+
+        font-size:.72rem;
+
+    }
+
+    .duration-badge{
+
+        font-size:.55rem;
+
+        padding:3px 8px;
+
+    }
+
+}
