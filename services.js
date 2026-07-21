@@ -311,50 +311,205 @@ window.services = {
 
     },
 
+medicalPedicure: {
 
+    pedichiuraCompleta: {
 
-    pedichiura: {
+        title: "Pedichiură Medicală Completă",
 
-        completa: {
+        options: [
 
-            title: "Pedichiură Medicală Completă",
+            {
+                label: "Serviciu",
+                price: 249,
+                recommended: true
+            }
 
-            options: [
-
-                {
-                    label: "Complet",
-                    duration: 60,
-                    price: 199,
-                    recommended: true
-                }
-
-            ]
-
-        }
+        ]
 
     },
 
+    hiperkeratoze: {
 
+        title: "Îndepărtarea Hiperkeratozelor",
 
-    nails: {
+        options: [
 
-        clasica: {
+            {
+                label: "Serviciu",
+                price: 149,
+                recommended: true
+            }
 
-            title: "Manichiură Clasică",
+        ]
 
-            options: [
+    },
 
-                {
-                    label: "Standard",
-                    duration: 60,
-                    price: 129,
-                    recommended: true
-                }
+    unghiiIncarnate: {
 
-            ]
+        title: "Îngrijirea Unghiilor Încarnate",
 
-        }
+        options: [
+
+            {
+                label: "Serviciu",
+                price: 179,
+                recommended: true
+            }
+
+        ]
+
+    },
+
+    calcaieCrapate: {
+
+        title: "Tratament pentru Călcâie Crăpate",
+
+        options: [
+
+            {
+                label: "Serviciu",
+                price: 169,
+                recommended: true
+            }
+
+        ]
+
+    },
+
+    ingrijirePreventiva: {
+
+        title: "Îngrijire Preventivă",
+
+        options: [
+
+            {
+                label: "Serviciu",
+                price: 139,
+                recommended: true
+            }
+
+        ]
+
+    },
+
+    signature: {
+
+        title: "Signature Foot Wellness",
+
+        options: [
+
+            {
+                label: "Signature",
+                price: 299,
+                recommended: true,
+                badge: "Premium"
+            }
+
+        ]
 
     }
+
+},
+nails: {
+
+    consultatie: {
+
+        title: "Consultație & Evaluare Nail Care",
+
+        options: [
+
+            {
+                label: "Serviciu",
+                price: 99,
+                recommended: true
+            }
+
+        ]
+
+    },
+
+    manichiura: {
+
+        title: "Manichiură Igienică",
+
+        options: [
+
+            {
+                label: "Serviciu",
+                price: 149,
+                recommended: true
+            }
+
+        ]
+
+    },
+
+    tratamente: {
+
+        title: "Tratamente pentru Unghii",
+
+        options: [
+
+            {
+                label: "Serviciu",
+                price: 179,
+                recommended: true
+            }
+
+        ]
+
+    },
+
+    reconstructie: {
+
+        title: "Reconstrucția Unghiilor",
+
+        options: [
+
+            {
+                label: "Serviciu",
+                price: 199,
+                recommended: true
+            }
+
+        ]
+
+    },
+
+    cuticule: {
+
+        title: "Îngrijirea Cuticulelor",
+
+        options: [
+
+            {
+                label: "Serviciu",
+                price: 99,
+                recommended: true
+            }
+
+        ]
+
+    },
+
+    signature: {
+
+        title: "Elyan Signature Nail Care",
+
+        options: [
+
+            {
+                label: "Signature",
+                price: 299,
+                recommended: true,
+                badge: "Premium"
+            }
+
+        ]
+
+    }
+
+}
 
 };
