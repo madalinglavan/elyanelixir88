@@ -593,47 +593,149 @@ document.querySelectorAll(".dropdown").forEach(dropdown => {
 });
 
 
-document.querySelectorAll(".service-card").forEach(card=>{
 
-    const durationCards = card.querySelectorAll(".duration-card");
-    const price = card.querySelector(".price-value");
+/*==================================================
+
+    SERVICES SYSTEM
+
+==================================================*/
+
+initServices();
+
+function initServices() {
+
+    document.querySelectorAll(".service-card").forEach(initServiceCard);
+
+}
+function initServiceCard(card) {
+
+    const category = card.dataset.category;
+    const service = card.dataset.service;
+
+    console.log("CATEGORY:", category);
+    console.log("SERVICE:", service);
+
+    console.log("SERVICES:", window.services);
+    console.log("CATEGORY OBJECT:", window.services[category]);
+    console.log("SERVICE OBJECT:", window.services[category]?.[service]);
+
+
+
+   const data = window.services[category][service];
+
+console.log("DATA =", data);
+
+    if (!data) {
+
+        console.warn(`Serviciul ${category}.${service} nu există.`);
+        return;
+
+    }
+
+    renderOptions(card, data);
+
+}
+
+function renderOptions(card, data) {
+
+    const selector = card.querySelector(".duration-selector");
+    const priceElement = card.querySelector(".price-value");
     const button = card.querySelector(".service-btn");
 
-    durationCards.forEach(option=>{
+    if (!selector || !priceElement || !button) return;
 
-        option.addEventListener("click",()=>{
+    selector.innerHTML = "";
 
-            durationCards.forEach(btn=>btn.classList.remove("active"));
+    let defaultIndex =
+        data.options.findIndex(option => option.recommended);
 
-            option.classList.add("active");
+    if (defaultIndex === -1) defaultIndex = 0;
 
-            const duration = option.dataset.duration;
-            const value = option.dataset.price;
+    data.options.forEach((option, index) => {
 
-            price.textContent = value + " Lei";
+        const durationCard = document.createElement("button");
 
-            const service = button.dataset.service;
+        durationCard.type = "button";
 
-            const message =
-`Bună ziua! 🌿
+        durationCard.className = "duration-card";
 
-Aș dori o programare pentru:
+        if (index === defaultIndex) {
+            durationCard.classList.add("active");
+        }
 
-${service}
+        durationCard.innerHTML = `
+
+            <span>${option.duration} min</span>
+
+            <strong>${option.label}</strong>
+
+            ${option.badge
+                ? `<small>${option.badge}</small>`
+                : ""}
+
+        `;
+
+        durationCard.addEventListener("click", () => {
+
+            selector
+                .querySelectorAll(".duration-card")
+                .forEach(btn => btn.classList.remove("active"));
+
+            durationCard.classList.add("active");
+
+            updateSelection(
+                data,
+                option,
+                priceElement,
+                button
+            );
+
+        });
+
+        selector.appendChild(durationCard);
+
+    });
+
+    updateSelection(
+        data,
+        data.options[defaultIndex],
+        priceElement,
+        button
+    );
+
+}
+
+function updateSelection(
+    data,
+    option,
+    priceElement,
+    button
+) {
+
+    priceElement.textContent = option.price + " Lei";
+
+    const message =
+`Bună ziua!
+
+Doresc o programare pentru:
+
+${data.title}
+
+Experiență:
+${option.label}
 
 Durată:
-${duration} minute
+${option.duration} minute
+
+Preț:
+${option.price} Lei
 
 Îmi puteți spune când aveți locuri disponibile?
 
 Mulțumesc!`;
 
-            button.href =
-"https://wa.me/40769729403?text=" +
-encodeURIComponent(message);
+    button.href =
+        "https://wa.me/40769729403?text=" +
+        encodeURIComponent(message);
 
-        });
-
-    });
-
-});
+}
