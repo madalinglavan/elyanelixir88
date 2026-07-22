@@ -656,7 +656,6 @@ function renderOptions(card, data) {
         const durationCard = document.createElement("button");
 
         durationCard.type = "button";
-
         durationCard.className = "duration-card";
 
         if (index === defaultIndex) {
@@ -665,7 +664,9 @@ function renderOptions(card, data) {
 
         durationCard.innerHTML = `
 
-            <span>${option.duration} min</span>
+            ${option.duration
+                ? `<span>${option.duration} min</span>`
+                : ""}
 
             <strong>${option.label}</strong>
 
@@ -703,8 +704,26 @@ function renderOptions(card, data) {
         button
     );
 
+    if (data.options.length === 1) {
+
+    selector.innerHTML = `
+        <div class="service-fixed-option">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>Serviciu complet</span>
+        </div>
+    `;
+
+    updateSelection(
+        data,
+        data.options[0],
+        priceElement,
+        button
+    );
+
+    return;
 }
 
+}
 function updateSelection(
     data,
     option,
@@ -714,6 +733,13 @@ function updateSelection(
 
     priceElement.textContent = option.price + " Lei";
 
+    const durationSection = option.duration
+        ? `
+
+Durată:
+${option.duration} minute`
+        : "";
+
     const message =
 `Bună ziua!
 
@@ -722,10 +748,7 @@ Doresc o programare pentru:
 ${data.title}
 
 Experiență:
-${option.label}
-
-Durată:
-${option.duration} minute
+${option.label}${durationSection}
 
 Preț:
 ${option.price} Lei
@@ -739,3 +762,4 @@ Mulțumesc!`;
         encodeURIComponent(message);
 
 }
+

@@ -3085,3 +3085,31 @@ PRICE
     }
 
 }
+
+.service-fixed-option{
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    padding:16px 20px;
+
+    border-radius:16px;
+
+    background:linear-gradient(135deg,#f7faf8,#eef7f2);
+
+    border:1px solid rgba(15,106,77,.12);
+
+    font-weight:600;
+
+    color:var(--primary);
+}
+
+.service-fixed-option i{
+
+    font-size:1.1rem;
+
+    color:#22c55e;
+
+}
