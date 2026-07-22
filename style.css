@@ -124,6 +124,9 @@ padding:120px 0;
 background:var(--primary);
 
 }
+.services-grid{
+    margin-top: 50px;
+}
 
 ::-webkit-scrollbar{
 width:10px;
@@ -3112,4 +3115,19 @@ PRICE
 
     color:#22c55e;
 
+}
+
+.section-title{
+    text-align: center;
+}
+.section-title h2{
+    margin-bottom: 20px;
+}
+.section-title span{
+    background-color: var(--primary-light);
+    padding: 5px;
+    border-radius: 12px;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 16px;
 }
